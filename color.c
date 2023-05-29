@@ -60,25 +60,6 @@ void fGauss( unsigned char *od, unsigned char *dc, int ih, int iw ){
 	return;
 }
 
-/*
-void fGauss( unsigned char *od, unsigned char *dc, int ih, int iw ){
-	double Gauss_mat[3][3] = {{0.09, 0.12, 0.09},
-							  {0.12, 0.12, 0.12},
-							  {0.09, 0.12, 0.09}};
-	double c; 
-	for(i = 1; i < ih-1; i++)
-		for(j = 1; j < iw-1; j++){
-			c = 0.0;
-			for(int k = -1; k <= 1; k++){
-				for(int w = -1; w <= 1; w++){
-					c += Gauss_mat[k+1][w+1]*od[(i+k)*iw+(j+w)];
-				}
-			}
-			dc[i*iw+j] = c;
-		}
-	return;
-}
-*/
 void colouring( unsigned char * dc, unsigned char *mcod, int ih, int iw){
 	for( i = 1; i < iw*ih; i++ ){
 		mcod[4*i] = 90 + dc[i] + 0.7 * dc[i - 1];
@@ -101,7 +82,7 @@ int main(){
 	unsigned char *datacopy = ( unsigned char* )malloc( ih * iw * sizeof( unsigned char ) );
 	unsigned char *mcodata = ( unsigned char* )malloc( 4*ih * iw * sizeof( unsigned char ) );
 	for( i = 0; i < 4*ih * iw; i += 4 ){
-		odata[k] = 0.321 * idata[i] + 0.231 * idata[i + 1] + 0.123 * idata[i + 2];
+		odata[k] = 0.299 * idata[i] + 0.587 * idata[i + 1] + 0.114 * idata[i + 2];
 		k++;
 	}
 	preparation( odata, ih, iw );
